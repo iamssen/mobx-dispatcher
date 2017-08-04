@@ -28,6 +28,10 @@ export const dispatcher: any = InnerComponent => {
     }
     
     dispatch = action => {
+      if (!action || typeof action !== 'function') {
+        throw new Error('The format of the Action is incorrect.');
+      }
+      
       const t = action(Object.assign(
         {},
         this.context.mobxStores,
