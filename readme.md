@@ -22,7 +22,7 @@ export default (text: string) => ({mystore}: {mystore:SomeStore}) => {
   mystore.updateText(text);
 }
 ```
-Create an Action. The `mystore` in the second block is injected automatically by the `@dispatcher`.
+Create an Action. The `{mystore}` in the second block is injected automatically by the `@dispatcher`.
 
 ```
 import * as React from 'react';
@@ -49,7 +49,7 @@ export default class extends React.Component<Props, State> {
   }
 }
 ```
-You can use `@dispatcher` to execute the Action.
+You can use `dispatch()` to execute the Action.
 
 ```
 import * as React from 'react';
