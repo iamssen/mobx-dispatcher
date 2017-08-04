@@ -1,7 +1,14 @@
 {
   "name": "mobx-dispatcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Add `dispatch(action)` functionality to mobx-react",
+  "keywords": [
+    "mobx",
+    "react-component",
+    "react",
+    "reactjs",
+    "dispatch"
+  ],
   "scripts": {
     "build": "rimraf lib && npm run build:declaration && npm run build:lib && npm run build:min",
     "build:declaration": "tsc --project tsconfig.d.json && rimraf declaration-rest",
