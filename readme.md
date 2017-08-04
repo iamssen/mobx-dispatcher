@@ -22,7 +22,7 @@ export default (text: string) => ({mystore}: {mystore:SomeStore}) => {
   mystore.updateText(text);
 }
 ```
-Create an Action. The `{mystore}` in the second block is injected automatically by the `@dispatcher`.
+Create an Action. The second block `{mystore}` will be injected automatically by `@dispatcher`.
 
 ```
 import * as React from 'react';
