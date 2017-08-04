@@ -8,19 +8,26 @@
 npm install mobx-dispatcher --save
 ```
 
+# About
+`mobx-dispatcher` is an extension to `mobx-react`.
+
+If you use `<Provider/>` and `@inject` (https://github.com/mobxjs/mobx-react#provider-and-inject),
+you can use this to isolate the Action.
+
 # How to Use
 
 ```
-// action.ts
-export updateText = (text: string) => ({mystore}: {mystore:SomeStore}) => {
+// updateText.ts
+export default (text: string) => ({mystore}: {mystore:SomeStore}) => {
   mystore.updateText(text);
 }
 ```
+Create an Action. The `mystore` in the second block is injected automatically by the `@dispatcher`.
 
 ```
-// dispatchOnly.tsx
 import * as React from 'react';
 import { dispatcher, Dispatch } from 'mobx-dispatcher';
+import { updateText } from '../actions';
 
 interface Props {
   dispatch?: Dispatch;
@@ -42,9 +49,9 @@ export default class extends React.Component<Props, State> {
   }
 }
 ```
+You can use `@dispatcher` to execute the Action.
 
 ```
-// dispatch.tsx
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import { dispatcher, Dispatch } from 'mobx-dispatcher';
@@ -75,3 +82,7 @@ export default class Component extends React.Component<Props, State> {
   }
 }
 ```
+It can also be used with `@inject`, `@observer`.
+
+Note that `@dispatcher` must be declared before `@observer`.
+(`@observer` will not work if `@dispatcher` is declared after `@observer`)
