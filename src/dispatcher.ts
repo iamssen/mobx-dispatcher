@@ -29,7 +29,8 @@ export const dispatcher: any = InnerComponent => {
     
     dispatch = action => {
       if (!action || typeof action !== 'function') {
-        throw new Error('The format of the Action is incorrect.');
+        return () => {
+        };
       }
       
       const t = action(Object.assign(

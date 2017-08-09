@@ -1,9 +1,10 @@
 {
   "name": "mobx-dispatcher",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Add `dispatch(action)` functionality to mobx-react",
   "keywords": [
     "mobx",
+    "mobx-react",
     "react-component",
     "react",
     "reactjs",
