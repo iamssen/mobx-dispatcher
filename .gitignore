@@ -5,7 +5,4 @@
 /*.iml
 /.idea/
 
-/yarn.lock
-/.yarnclean
-
 /declaration-rest

@@ -1,30 +1,27 @@
-import { PropTypes } from 'mobx-react';
 import * as React from 'react';
+import { contextTypes } from './types';
 
-const contextTypes = Object.freeze({
-  mobxStores: PropTypes.objectOrObservableObject,
-});
 
-export const dispatcher: any = InnerComponent => {
+const decorator: any = InnerComponent => {
   const displayName = 'dispatch-' + (InnerComponent.displayName || InnerComponent.name || (InnerComponent.constructor && InnerComponent.constructor.name) || 'Unknown');
   
   return class extends React.Component<{}, {}> {
     static displayName = displayName;
     static contextTypes = contextTypes;
     
-    private store: (() => void)[];
+    private teardownFunctions: (() => void)[];
     
     render() {
       return React.createElement(InnerComponent, Object.assign({}, this.props, {dispatch: this.dispatch}));
     }
     
     componentWillMount() {
-      this.store = [];
+      this.teardownFunctions = [];
     }
     
     componentWillUnmount() {
-      this.store.forEach(teardown => teardown());
-      this.store = null;
+      this.teardownFunctions.forEach(teardown => teardown());
+      this.teardownFunctions = null;
     }
     
     dispatch = action => {
@@ -46,9 +43,11 @@ export const dispatcher: any = InnerComponent => {
         broken = true;
       };
       
-      this.store.push(teardown);
+      this.teardownFunctions.push(teardown);
       
       return teardown;
     };
   };
 };
+
+export default decorator;
