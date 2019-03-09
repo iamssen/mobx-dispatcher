@@ -86,3 +86,10 @@ It can also be used with `@inject`, `@observer`.
 
 Note that `@dispatcher` must be declared before `@observer`.
 (`@observer` will not work if `@dispatcher` is declared after `@observer`)
+
+
+----------------------
+
+# Archived
+
+- Use default context api instead of mobx after React 16.3 update
